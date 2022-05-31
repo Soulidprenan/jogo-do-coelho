@@ -7,7 +7,7 @@ class Link {
       bodyB: bodyB,
       pointB: { x: 0, y: 0 },
       length: -10,
-      stiffness: 0.01,
+      stiffness: 0.02,
     });
     World.add(engine.world, this.link);
   }
