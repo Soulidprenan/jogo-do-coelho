@@ -14,13 +14,18 @@ var bg_img;
 var ground;
 
 var rope;
-var melancia;
+var melancia,melanciaImg;
 var link;
+var coelho,coelhoImg;
 
 var buttonCut;
 
 function preload() {
   bg_img = loadImage("assets/background.png");
+  melanciaImg = loadImage("./assets/melon.png");
+  coelhoImg = loadImage("./assets/Rabbit-01.png")
+  
+
 }
 
 function setup() {
@@ -32,9 +37,10 @@ function setup() {
   ground = new Ground(200, 690, 600, 20);
   rectMode(CENTER);
   ellipseMode(RADIUS);
+  
   textSize(50);
 
-  rope = new Rope(7, { x: 200, y: 100 });
+  rope = new Rope(5, { x: 200, y: 100 });
 
   melancia = Bodies.circle(200, 135, 30);
   Composite.add(rope.body, melancia);
@@ -46,6 +52,12 @@ function setup() {
   buttonCut.position(170, 70);
   buttonCut.size(70, 70);
   buttonCut.mouseClicked(drop);
+
+  coelho = createSprite(200,600);
+  coelho.addImage(coelhoImg);
+  coelho.scale = 0.3
+
+  
 }
 function drop() {
   rope.break();
@@ -59,6 +71,10 @@ function draw() {
 
   Engine.update(engine);
   ground.show();
-  ellipse(melancia.position.x, melancia.position.y, 30, 30);
+  push();
+  imageMode(CENTER);
+  image(melanciaImg,melancia.position.x, melancia.position.y, 100, 100);
+  pop();
   rope.show();
+  drawSprites();
 }
