@@ -23,7 +23,8 @@ var buttonCut;
 function preload() {
   bg_img = loadImage("assets/background.png");
   melanciaImg = loadImage("./assets/melon.png");
-  coelhoImg = loadImage("./assets/Rabbit-01.png")
+  coelhoImg = loadAnimation("./assets/blink_1.png","./assets/blink_2.png","./assets/blink_3.png","./assets/blink_2.png");
+  coelhoImg.frameDelay = 40;
   
 
 }
@@ -54,7 +55,7 @@ function setup() {
   buttonCut.mouseClicked(drop);
 
   coelho = createSprite(200,600);
-  coelho.addImage(coelhoImg);
+  coelho.addAnimation("piscando",coelhoImg);
   coelho.scale = 0.3
 
   
@@ -73,7 +74,9 @@ function draw() {
   ground.show();
   push();
   imageMode(CENTER);
+  if (melancia != null){
   image(melanciaImg,melancia.position.x, melancia.position.y, 100, 100);
+  };
   pop();
   rope.show();
   drawSprites();
